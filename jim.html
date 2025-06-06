@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jim Claudette Joy Q. Prejola - Virtual Assistant</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .resume-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s linear infinite;
+            opacity: 0.1;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(-50px) translateY(-50px); }
+            100% { transform: translateX(50px) translateY(50px); }
+        }
+
+        .name {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .title {
+            font-size: 1.3em;
+            font-weight: 300;
+            margin-bottom: 20px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 15px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 0;
+        }
+
+        .sidebar {
+            background: #f8f9fa;
+            padding: 30px;
+            border-right: 1px solid #e9ecef;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #764ba2;
+        }
+
+        .objective {
+            background: linear-gradient(135deg, #667eea20, #764ba220);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .objective::before {
+            content: '🎯';
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            font-size: 2em;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .skill-category h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            padding: 5px 0;
+        }
+
+        .skill-item::before {
+            content: '✓';
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .experience-item {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .job-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .company {
+            font-weight: 600;
+            color: #764ba2;
+            margin-bottom: 5px;
+        }
+
+        .date-location {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .achievement {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .achievement::before {
+            content: '▶';
+            color: #667eea;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .education-item {
+            background: linear-gradient(135deg, #667eea10, #764ba210);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .degree {
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .school {
+            font-weight: 600;
+            color: #764ba2;
+            margin-bottom: 5px;
+        }
+
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .language-level {
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .strengths-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .strength-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .strength-item:hover {
+            transform: scale(1.05);
+        }
+
+        .strength-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .strength-title {
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .cta-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .cta-items {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .cta-item {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .name {
+                font-size: 2em;
+            }
+            
+            .strengths-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <div class="header">
+            <h1 class="name">JIM CLAUDETTE JOY Q. PREJOLA</h1>
+            <p class="title">Virtual Assistant | Administrative Support Specialist</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📍</span>
+                    <span>Calauan, Laguna, Philippines</span>
+                </div>
+                <div class="contact-item">
+                    <span>📞</span>
+                    <span>+63 951 912 1722</span>
+                </div>
+                <div class="contact-item">
+                    <span>📞</span>
+                    <span>+886 903 206 848</span>
+                </div>
+                <div class="contact-item">
+                    <span>✉️</span>
+                    <span>claudprejola04@gmail.com</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="section">
+                    <h2 class="section-title">Languages</h2>
+                    <div class="language-item">
+                        <span><strong>Filipino</strong></span>
+                        <span class="language-level">Native</span>
+                    </div>
+                    <div class="language-item">
+                        <span><strong>English</strong></span>
+                        <span class="language-level">Proficient</span>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">Technical Skills</h2>
+                    <div class="skill-item">Microsoft Office Suite</div>
+                    <div class="skill-item">Google Workspace</div>
+                    <div class="skill-item">Email Management</div>
+                    <div class="skill-item">Data Entry (45 WPM)</div>
+                    <div class="skill-item">Video Conferencing</div>
+                    <div class="skill-item">Internet Research</div>
+                    <div class="skill-item">Calendar Management</div>
+                    <div class="skill-item">Document Formatting</div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">Education</h2>
+                    <div class="education-item">
+                        <div class="degree">Medical Technologist Course</div>
+                        <div class="school">Dr. Carlos S. Lanting Colleges</div>
+                        <div class="date-location">2015 – 2017 | Undergraduate</div>
+                    </div>
+                    <div class="education-item">
+                        <div class="degree">TESDA NC2 Certification</div>
+                        <div class="school">Caregiving Certification</div>
+                    </div>
+                    <div class="education-item">
+                        <div class="degree">High School Diploma</div>
+                        <div class="school">St. Paul High School</div>
+                        <div class="date-location">2011 – 2015</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="objective">
+                    <h2 class="section-title">Objective</h2>
+                    <p>Entry-level <strong>Virtual Assistant</strong> seeking to provide reliable remote administrative support while developing professional skills in the virtual assistance field. Bringing strong organizational abilities, attention to detail, and communication skills gained through diverse work experiences in manufacturing, healthcare, and caregiving environments.</p>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">Core Competencies</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h4>🗂️ Administrative Support</h4>
+                            <div class="skill-item">Data entry and record keeping</div>
+                            <div class="skill-item">Document creation and formatting</div>
+                            <div class="skill-item">File organization and management</div>
+                            <div class="skill-item">Task tracking and follow-up</div>
+                        </div>
+                        <div class="skill-category">
+                            <h4>💬 Communication</h4>
+                            <div class="skill-item">Professional email handling</div>
+                            <div class="skill-item">Client coordination and scheduling</div>
+                            <div class="skill-item">Clear and timely correspondence</div>
+                            <div class="skill-item">Customer service support</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">Professional Experience</h2>
+                    
+                    <div class="experience-item">
+                        <div class="job-title">Factory Worker</div>
+                        <div class="company">Group Strive Electronics</div>
+                        <div class="date-location">
+                            <span>📅 June 2023 – Present</span>
+                            <span>📍 Hsinchu City, Taiwan</span>
+                        </div>
+                        <div class="achievement">Maintain detailed production logs and quality compliance records</div>
+                        <div class="achievement">Coordinate daily tasks with team members across different shifts</div>
+                        <div class="achievement">Follow strict procedures and meet daily production targets</div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-title">Specimen Collector</div>
+                        <div class="company">Kairos Laboratory Inc.</div>
+                        <div class="date-location">
+                            <span>📅 July 2022 – March 2023</span>
+                            <span>📍 Philippines</span>
+                        </div>
+                        <div class="achievement">Managed patient scheduling and sample collection documentation</div>
+                        <div class="achievement">Handled sensitive medical data with confidentiality and accuracy</div>
+                        <div class="achievement">Maintained organized filing systems for laboratory records</div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-title">Specimen Collector (On-call)</div>
+                        <div class="company">New World Diagnostic Inc. & Kairos Laboratory Inc.</div>
+                        <div class="date-location">
+                            <span>📅 July 2021 – July 2022</span>
+                            <span>📍 Philippines</span>
+                        </div>
+                        <div class="achievement">Coordinated patient appointments and sample pickup schedules</div>
+                        <div class="achievement">Worked independently while managing time-sensitive tasks</div>
+                        <div class="achievement">Maintained accurate patient records and sample tracking logs</div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-title">Private Caregiver</div>
+                        <div class="company">Magnolia Place</div>
+                        <div class="date-location">
+                            <span>📅 August 2017 – October 2019</span>
+                            <span>📍 Quezon City</span>
+                        </div>
+                        <div class="achievement">Maintained detailed daily care logs and medical records</div>
+                        <div class="achievement">Coordinated with family members and healthcare providers</div>
+                        <div class="achievement">Managed client schedules and appointment coordination</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">Key Strengths</h2>
+                    <div class="strengths-grid">
+                        <div class="strength-item">
+                            <div class="strength-icon">⚡</div>
+                            <div class="strength-title">Fast Learner</div>
+                            <p>Quick to adapt to new tools and procedures</p>
+                        </div>
+                        <div class="strength-item">
+                            <div class="strength-icon">🎯</div>
+                            <div class="strength-title">Detail-Oriented</div>
+                            <p>5+ years of accuracy in documentation</p>
+                        </div>
+                        <div class="strength-item">
+                            <div class="strength-icon">🤝</div>
+                            <div class="strength-title">Reliable</div>
+                            <p>Proven track record of meeting deadlines</p>
+                        </div>
+                        <div class="strength-item">
+                            <div class="strength-icon">💪</div>
+                            <div class="strength-title">Independent</div>
+                            <p>Experience working with minimal supervision</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2 class="cta-title">🚀 Ready to Support Your Business!</h2>
+            <div class="cta-items">
+                <div class="cta-item">✅ Available for immediate start</div>
+                <div class="cta-item">✅ Flexible working hours</div>
+                <div class="cta-item">✅ Reliable internet connection</div>
+                <div class="cta-item">✅ Dedicated workspace</div>
+                <div class="cta-item">✅ Committed to learning</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
